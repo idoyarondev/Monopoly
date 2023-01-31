@@ -62,7 +62,7 @@ public class Monopoly {
 		
 		/* reads the rolls JSON file and creates a queue of rolls to be used during the game */
 		Queue<Integer> rolls = new LinkedList<>(); 
-		try (Reader reader = new FileReader("rolls_1.json")){
+		try (Reader reader = new FileReader("rolls_2.json")){
 			JSONArray jsonArray = (JSONArray) parser.parse(reader);
 			for (Object object : jsonArray) {
 				int roll = Integer.parseInt(object.toString());
