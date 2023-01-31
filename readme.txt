@@ -19,12 +19,14 @@ The program then runs the game engine with the appropriate attributes.
 When the game is over the program prints out the final results.
 
 ## How to run:
-The program is currently using rolls_1.json. To change to the 2nd rolls JSON file go to line 65 in the Monopoly.java file and change the path to rolls_2.json.
 To compile the program go to src folder and run from the command line (Windows):
 javac -cp "json-simple-1.1.1.jar" Monopoly.java GameEngine.java Player.java Tile.java
 *the cp stands for class path. It adds the external java for JSON library to the program.
-After compiling, from the src folder, to run the program from the command line (Windows):
-java -cp .;json-simple-1.1.1.jar Monopoly  
+
+After compiling, from the src folder, to run the program with rolls_1 JSON from the command line (Windows):
+java -cp .;json-simple-1.1.1.jar Monopoly "1"
+to run the program with rolls_2 JSON from the command line (Windows):
+java -cp .;json-simple-1.1.1.jar Monopoly "2"
 
 ## Extensibility:
 The game has been programmed with extensibility in mind.

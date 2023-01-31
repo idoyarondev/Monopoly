@@ -14,6 +14,8 @@ public class Monopoly {
 
 	public static void main(String[] args) {
 		
+		System.out.println(args[0]);
+		
 		/* I Created an object of the class Player for each Monopoly player and placed them in an array of Player for use during the game */
 		Player peter = new Player("Peter");
 		Player billy = new Player("Billy");
@@ -62,7 +64,7 @@ public class Monopoly {
 		
 		/* reads the rolls JSON file and creates a queue of rolls to be used during the game */
 		Queue<Integer> rolls = new LinkedList<>(); 
-		try (Reader reader = new FileReader("rolls_2.json")){
+		try (Reader reader = new FileReader("rolls_" + args[0] + ".json")){
 			JSONArray jsonArray = (JSONArray) parser.parse(reader);
 			for (Object object : jsonArray) {
 				int roll = Integer.parseInt(object.toString());
