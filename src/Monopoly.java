@@ -3,6 +3,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -69,13 +72,33 @@ public class Monopoly {
 			e.printStackTrace();
 		}
 		
-		/* creates an object of game enginer and runs the game */
+		/* creates an object of game engine and runs the game */
 		System.out.println("Welcome to Woven Monopoly! \n");
 		
 		GameEngine gameEngine = new GameEngine();
 		gameEngine.runGame(players, tiles, rolls);
 		
 		System.out.println("Game over!");
+		
+		/* when the game is over shows the final results */
+
+		/* sorts array of players based on their final score */
+		Arrays.sort(players, Comparator.comparing(Player::getBalance));	//sort
+		Collections.reverse(Arrays.asList(players));					//reverse
+		System.out.println("Congratulations " + players[0].getPlayerName() + "! You are the winner! \n");
+		
+		/* prints final results in a table format */
+		System.out.println("Final Results:");
+		final Object[][] table = new String[players.length + 1][];
+		table[0] = new String[] {"Name","Balance","Space"};
+		for(int i=0;i<players.length;i++) {
+			table[i+1] = new String[] {players[i].getPlayerName(), Integer.toString(players[i].getBalance()), 
+					tiles.get(players[i].getCurrentTileNumber()).getName()};
+		}
+
+		for (final Object[] row : table) {
+		    System.out.format("%15s%15s%25s%n", row);
+		}
 	}
 
 }
