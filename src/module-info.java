@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author Ido
- *
- */
-module Monopoly {
-}

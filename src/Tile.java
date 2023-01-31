@@ -1,5 +1,3 @@
-package Monopoly;
-
 public class Tile {
 	private String colour,name,type;
 	private int price;

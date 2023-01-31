@@ -1,4 +1,4 @@
-package Monopoly;
+import org.json.simple.parser.*;
 
 public class Monopoly {
 
@@ -11,6 +11,8 @@ public class Monopoly {
 		Player sweedal = new Player("Sweedal");
 		Player[] players = {peter,billy,charlotte,sweedal};
 
+		/* I used a external Java library for working with JSON files */
+		JSONParser parser = new JSONParser();
 	}
 
 }
