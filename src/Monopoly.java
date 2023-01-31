@@ -1,4 +1,9 @@
 import org.json.simple.parser.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import java.io.FileReader;
+import java.io.Reader;
+import java.util.Hashtable;
 
 public class Monopoly {
 
@@ -13,6 +18,42 @@ public class Monopoly {
 
 		/* I used a external Java library for working with JSON files */
 		JSONParser parser = new JSONParser();
+		
+		/* Reads the board.json file and creates a hash table where the key is the tile's number and the value is an object of the class Tile */
+		Hashtable<Integer,Tile> tiles = new Hashtable<>();	
+		try (Reader reader = new FileReader("D:\\Downloads\\new_coding_test\\board.json")){
+			
+			JSONArray board = (JSONArray) parser.parse(reader);
+			Integer tileNumber = 0;
+			for (Object obj : board) {
+				
+				JSONObject jsonObject = (JSONObject)obj;
+				
+				/* since some tiles don't have all variables this code checks whether a variable has value and if not sends ""/0 as an argument when creating the object */
+				String colour = "";
+				String name = "";
+				String type = "";
+				int price = 0;
+				
+				if(jsonObject.containsKey("colour")) {
+					colour = jsonObject.get("colour").toString();
+				}
+				if(jsonObject.containsKey("name")) {
+					name = jsonObject.get("name").toString();
+				}
+				if(jsonObject.containsKey("type")) {
+					type = jsonObject.get("type").toString();
+				}
+				if(jsonObject.containsKey("price")) {
+					price = Integer.parseInt(jsonObject.get("price").toString());
+				}
+				
+				tiles.put(tileNumber,new Tile(colour,price,name,type));
+				tileNumber++;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
