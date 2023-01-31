@@ -110,10 +110,14 @@ public class GameEngine {
 			int updatedPlayerBalance = currentPlayer.getBalance();
 			System.out.println(playerName + "'s new balance is " + updatedPlayerBalance + "$ \n");
 			
+			/* checks if player's balance reached 0 or under (game over) */
+			if(players[numOfPlayer].getBalance() < 1) {
+				gameOver = true;
+			}
+			
 			/* next player's turn */
 			numOfPlayer = (numOfPlayer+1) % players.length;
 
 		}
 	}
-
 }

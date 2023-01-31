@@ -74,6 +74,8 @@ public class Monopoly {
 		
 		GameEngine gameEngine = new GameEngine();
 		gameEngine.runGame(players, tiles, rolls);
+		
+		System.out.println("Game over!");
 	}
 
 }
