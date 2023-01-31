@@ -16,6 +16,7 @@ public class GameEngine {
 			String playerName = currentPlayer.getPlayerName();
 			int previousTileNumber = currentPlayer.getCurrentTileNumber();
 			Tile previousTile = tiles.get(previousTileNumber);
+			boolean passGo = false;
 			
 			/* returns and removes the dice roll at the front end of the queue */
 			int roll = rolls.poll();
@@ -29,6 +30,11 @@ public class GameEngine {
 			System.out.println(playerName + " was on tile number " + previousTileNumber + " - " + previousTile.getName());
 			System.out.println(playerName + " is now on tile number " + newTileNumber + " - " + newTileName);
 			players[numOfPlayer].setCurrentTileNumber(newTileNumber);
+			
+			/* checks if players passes the GO tile */
+			if(previousTileNumber + roll >= numOfTiles) {
+				passGo = true;
+			}
 			
 			/* next player's turn */
 			numOfPlayer = (numOfPlayer+1) % players.length;
