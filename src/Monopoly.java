@@ -26,7 +26,7 @@ public class Monopoly {
 		
 		/* Reads the board.json file and creates a hash table where the key is the tile's number and the value is an object of the class Tile */
 		Hashtable<Integer,Tile> tiles = new Hashtable<>();	
-		try (Reader reader = new FileReader("D:\\Downloads\\new_coding_test\\board.json")){
+		try (Reader reader = new FileReader("board.json")){
 			
 			JSONArray board = (JSONArray) parser.parse(reader);
 			Integer tileNumber = 0;
@@ -62,7 +62,7 @@ public class Monopoly {
 		
 		/* reads the rolls JSON file and creates a queue of rolls to be used during the game */
 		Queue<Integer> rolls = new LinkedList<>(); 
-		try (Reader reader = new FileReader("D:\\Downloads\\new_coding_test\\rolls_1.json")){
+		try (Reader reader = new FileReader("rolls_1.json")){
 			JSONArray jsonArray = (JSONArray) parser.parse(reader);
 			for (Object object : jsonArray) {
 				int roll = Integer.parseInt(object.toString());
