@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Queue;
 
@@ -65,6 +66,44 @@ public class GameEngine {
 					currentPlayer.addToTilesOwnedByPlayer(newTile);
 				}
 				
+				/* charges rent of player if tile is already owned */
+				else if (owner != currentPlayer){
+					System.out.println(newTileName + " is owned by " + owner.getPlayerName());
+	
+					/* checks if owner owns all tile of same colour */
+					boolean ownerOwnsAllColour = false;
+					ArrayList<Tile> tilesOwnedByPlayer = owner.getTilesOwnedByPlayer();
+					for(Tile tile : tilesOwnedByPlayer) {
+						if(tile.getColour().equals(newTile.getColour())
+								&& tile.getName() != newTile.getName() 
+								&& tile.getOwner() == newTile.getOwner()) {
+							ownerOwnsAllColour = true;
+						}
+					}
+					
+					int rent;
+					
+					/* doubles the rent if owner owns all tiles of same colour */
+					if(ownerOwnsAllColour) {
+						System.out.println(owner.getPlayerName() + " owns all " + newTile.getColour() + " tiles. Rent is doubled");
+						rent = tilePrice * 2;
+					}
+					/* otherwise, sets regular rent */
+					else {
+						rent = tilePrice;
+					}
+					
+					/* charges player */
+					System.out.println(playerName + " pays " + rent + "$ rent to " + owner.getPlayerName());
+					currentPlayer.setBalance(previousPlayerBalance - rent);
+					owner.setBalance(owner.getBalance() + rent);
+					
+				}
+				
+				/* if the tile is owned by the player */
+				else {
+					System.out.println(newTileName + " is owned by " + owner.getPlayerName());
+				}
 			}
 			
 			/* next player's turn */
