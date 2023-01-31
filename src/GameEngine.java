@@ -106,6 +106,10 @@ public class GameEngine {
 				}
 			}
 			
+			/* updates player's balance */
+			int updatedPlayerBalance = currentPlayer.getBalance();
+			System.out.println(playerName + "'s new balance is " + updatedPlayerBalance + "$ \n");
+			
 			/* next player's turn */
 			numOfPlayer = (numOfPlayer+1) % players.length;
 
