@@ -29,12 +29,18 @@ public class GameEngine {
 			String newTileName = newTile.getName();
 			System.out.println(playerName + " was on tile number " + previousTileNumber + " - " + previousTile.getName());
 			System.out.println(playerName + " is now on tile number " + newTileNumber + " - " + newTileName);
-			players[numOfPlayer].setCurrentTileNumber(newTileNumber);
+			currentPlayer.setCurrentTileNumber(newTileNumber);
 			
 			/* checks if players passes the GO tile */
 			if(previousTileNumber + roll >= numOfTiles) {
 				passGo = true;
 			}
+			
+			/* actions taken at new tile */
+			
+			/* gets the player's previous balance */
+			int previousPlayerBalance = currentPlayer.getBalance();
+			System.out.println(playerName + "'s previous balance is " + previousPlayerBalance + "$");
 			
 			/* next player's turn */
 			numOfPlayer = (numOfPlayer+1) % players.length;
