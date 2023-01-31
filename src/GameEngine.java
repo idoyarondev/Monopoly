@@ -42,6 +42,13 @@ public class GameEngine {
 			int previousPlayerBalance = currentPlayer.getBalance();
 			System.out.println(playerName + "'s previous balance is " + previousPlayerBalance + "$");
 			
+			/* add 1$ to player's balance if passed GO */
+			if(passGo) {
+				System.out.println(playerName + " passed GO and gets 1$");
+				players[numOfPlayer].setBalance(previousPlayerBalance + 1);
+				previousPlayerBalance = currentPlayer.getBalance();
+			}
+			
 			/* next player's turn */
 			numOfPlayer = (numOfPlayer+1) % players.length;
 
