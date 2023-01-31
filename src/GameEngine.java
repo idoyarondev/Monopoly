@@ -49,6 +49,24 @@ public class GameEngine {
 				previousPlayerBalance = currentPlayer.getBalance();
 			}
 			
+			/* checks if new tile is the GO tile */
+			/* Can be changed to using type variable in Tile class */
+			if(newTileNumber != 0) {
+				
+				Player owner = newTile.getOwner();
+				int tilePrice = newTile.getPrice();
+				
+				/* player buys tile if there is no owner */
+				if(owner == null) {
+					System.out.println(playerName + " is buying " + newTileName);
+					System.out.println(newTileName + "'s price is " + tilePrice + "$");
+					currentPlayer.setBalance(previousPlayerBalance - tilePrice);
+					newTile.setOwner(currentPlayer);
+					currentPlayer.addToTilesOwnedByPlayer(newTile);
+				}
+				
+			}
+			
 			/* next player's turn */
 			numOfPlayer = (numOfPlayer+1) % players.length;
 
