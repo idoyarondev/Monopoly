@@ -68,6 +68,12 @@ public class Monopoly {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		/* creates an object of game enginer and runs the game */
+		System.out.println("Welcome to Woven Monopoly! \n");
+		
+		GameEngine gameEngine = new GameEngine();
+		gameEngine.runGame(players, tiles, rolls);
 	}
 
 }
